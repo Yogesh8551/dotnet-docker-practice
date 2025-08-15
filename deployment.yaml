@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: automation
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: automation
+  template:
+    metadata:
+      labels:
+        app: automation
+    spec:
+      containers:
+      - name: automation
+        image: yogeshwar002.azurecr.io/automation:v1
+        ports:
+        - containerPort: 80
