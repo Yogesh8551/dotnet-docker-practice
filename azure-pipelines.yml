@@ -17,7 +17,7 @@ stages:
       - task: docker@2
         displayName: build and push docker image
         inputs:
-         containerRegistry: yogeshwar001
+         containerRegistry: dotnetlive_webapp
          repository: $(imageName)
          command: buildAndPush
          Dockerfile: '**/Dockerfile'
