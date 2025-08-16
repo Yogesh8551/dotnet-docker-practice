@@ -22,7 +22,7 @@ stages:
          containerRegistry: dotnetlive_webapp
          repository: $(imageName)
          command: buildAndPush
-         Dockerfile: 'Dockerfile'
+         Dockerfile: 'dockerfile'
          tags: |
           $(imageTag)
 
