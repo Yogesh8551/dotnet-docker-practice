@@ -14,6 +14,8 @@ stages:
      vmImage: ubuntu-latest
     steps:
       - checkout: self
+      - script: ls -R
+        displayName: 'List repo files'
       - task: docker@2
         displayName: build and push docker image
         inputs:
