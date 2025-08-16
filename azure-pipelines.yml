@@ -1,0 +1,49 @@
+trigger:
+- main
+variables:
+  imageName: automation
+  imageTag: v2
+  dockerImage: yogeshwar001.azurecr.io/$(imageName):$(imageTag)
+
+stages:
+- stage: build
+  displayName: build and push to docker registry
+  jobs:
+  - job: buildJob
+    pool: 
+     vmImage: ubuntu-latest
+    steps:
+      - checkout: self
+      - task: docker@2
+        displayName: build and push docker image
+        inputs:
+         containerRegistry: yogeshwar001
+         repository: $(imageName)
+         command: buildAndPush
+         Dockerfile: '**/Dockerfile'
+         tags: |
+          $(imageTag)
+
+   
+
+- stage: Deploy
+  displayName: deploy to aks
+  dependsOn: build
+  jobs:
+    - job: deployJob
+      displayName: deploy
+      pool:
+       vmImage: ubuntu-latest
+      steps:
+        - checkout: self
+        - task: Kubernetes@1
+          inputs:
+            connectionType: Kubernetes Service Connection
+            kubernetesServiceEndpoint: yogeshwaraks
+            command: apply
+            useConfigurationFile: true
+            configuration: |
+              deployment.yaml
+              service.yaml
+            namespace: default
+            
