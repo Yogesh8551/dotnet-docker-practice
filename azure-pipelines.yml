@@ -39,8 +39,8 @@ stages:
         inputs:
           secureFile: KubeConfig
       - script: 
-          mkdir -p ~/.kube
-          mv $(GetKubeConfig.secureFilePath) ~/.kube/config
+          mkdir -p ~/kube
+          mv $(GetKubeConfig.secureFilePath) ~/kube/config
           kubectl apply -f deployment.yaml
           kubectl apply -f service.yaml
           displayName: kubectl apply
