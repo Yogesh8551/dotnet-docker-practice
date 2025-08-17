@@ -22,8 +22,8 @@ This project is a simple ASP.NET Core web application that I successfully **Dock
 
 | Description | Screenshot |
 |-------------|------------|
-| Docker Build & Run | ![](./screenshots/docker_commands.png) |
-| Application Running | ![](./screenshots/app_running.png) |
+| Docker Build & Run | ![](terminal.png) |
+| Application Running | ![](output.png) |
 
 >  **Next Goal** → Push this image to ACR and deploy it to AKS, then automate using Azure DevOps CI/CD 🚀
 
